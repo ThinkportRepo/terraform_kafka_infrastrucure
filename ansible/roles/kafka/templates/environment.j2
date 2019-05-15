@@ -1,0 +1,11 @@
+[Service]
+{% for key, value in kafka.broker.environment.items() %}
+Environment="{{key}}={{value}}"
+{% endfor %}
+Restart=on-failure
+
+[Unit]
+After=confluent-zookeeper.service
+
+[Install]
+WantedBy=multi-user.target

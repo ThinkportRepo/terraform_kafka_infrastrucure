@@ -1,0 +1,10 @@
+[Unit]
+After=network.target
+
+[Service]
+{% for key, value in zookeeper.environment.items() %}
+Environment="{{key}}={{value}}"
+{% endfor %}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+zookeeper:
+  user: cp-kafka
+  group: confluent
+  config_file: /etc/kafka/zookeeper.properties
+  service_name: confluent-zookeeper
+  systemd_override: /etc/systemd/system/confluent-zookeeper.service.d
+  config:
+    maxClientCnxns: 10
+    tickTime: 10000
+    initLimit: 10
+    syncLimit: 5
+    dataDir: /var/lib/zookeeper
+    clientPort: 2181
+  environment:
+    KAFKA_HEAP_OPTS: "-Xmx1000M"
+  systemd:
+    enabled: yes
+    state: started

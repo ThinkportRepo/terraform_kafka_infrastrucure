@@ -1,0 +1,8 @@
+- name: yum-clean-all
+  command: yum clean all
+  become: yes
+
+- name: reload systemd
+  become: yes
+  systemd:
+    daemon_reload: yes

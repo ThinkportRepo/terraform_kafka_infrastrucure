@@ -1,0 +1,5 @@
+log.dirs={% for logdir in kafka.broker.datadir %}{% if loop.index > 1%},{% endif %}{{ logdir }}{% endfor %}
+
+{% for key, value in kafka.broker.config.items() %}
+{{key}}={{value}}
+{% endfor %}

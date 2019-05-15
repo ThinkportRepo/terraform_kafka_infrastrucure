@@ -1,0 +1,25 @@
+- name: create ssl certificate directory
+  file:
+    path: /var/ssl/private
+    state: directory
+    mode: 0755
+
+- name: copy ca-cert into ami
+  copy:
+     dest: /var/ssl/private
+     src: ca-cert
+
+- name: copy ca-key into ami
+  copy:
+     dest: /var/ssl/private
+     src: ca-key
+
+- name: copy kafka.client.truststore.jks into ami
+  copy:
+     dest: /var/ssl/private
+     src: kafka.client.truststore.jks
+
+- name: copy kafka.server.truststore.jks into ami
+  copy:
+     dest: /var/ssl/private
+     src: kafka.server.truststore.jks

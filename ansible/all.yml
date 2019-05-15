@@ -1,0 +1,13 @@
+---
+- name: Install and configure Deployment environment on EC2
+
+  hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - ssl
+    - zookeeper
+    - kafka
+    - topics

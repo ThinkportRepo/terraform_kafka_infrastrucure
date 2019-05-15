@@ -1,0 +1,9 @@
+- name: restart zookeeper
+  become: yes
+  systemd:
+    name: "{{zookeeper.service_name}}"
+    state: restarted
+
+- name: reload systemd
+  become: yes
+  command: systemctl daemon-reload

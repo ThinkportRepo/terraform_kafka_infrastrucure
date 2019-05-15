@@ -1,0 +1,44 @@
+---
+- name: create topics
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: create topics
+    become: yes
+    command: kafka-topics --create --zookeeper 10.0.0.163:2181 --replication-factor {{ '{{' }} item.replication_factor {{ '}}' }} --partitions {{ '{{' }} item.partitions {{ '}}' }} --topic {{ '{{' }} item.topicname {{ '}}' }}
+    ignore_errors: yes
+    with_items:
+        - { topicname: 'DISP_CONFIG_IN',                       partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=9223372036854775806'            }
+        - { topicname: 'DISP_IN',                              partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'DISP_ROUTE_CREATION_STATUS',           partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=604800000'                      }
+        - { topicname: 'PROC_CONFIG_IN',                       partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=9223372036854775806'            }
+        - { topicname: 'PROC_IN',                              partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'PROC_JOBSCHEMA_IN',                    partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=9223372036854775806'            }
+        - { topicname: 'PROC_ROUTE_CREATION_STATUS',           partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=604800000'                      }
+        - { topicname: 'RSD_IN',                               partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=21600000'                       }
+        - { topicname: 'SCHEMA_IN',                            partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_HTTP_RESPONSE',                 partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_1_HERE_SDIP_HTTP_RESPONSE',     partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_9_HERE_OLP_RSD_HTTP_RESPONSE',  partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_IN',                            partitions: 1,      replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=7844000000'                     }
+        - { topicname: 'TARGET_TOPIC_1',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_2',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_3',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_4',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_5',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_6',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_7',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_8',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_9',                       partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                     }
+        - { topicname: 'TARGET_TOPIC_10',                      partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                              }
+        - { topicname: 'TARGET_10_HERE_OLP_USS_HTTP_RESPONSE', partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }
+        - { topicname: 'TARGET_TOPIC_11',                      partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                              }
+        - { topicname: 'TARGET_11_RSD_MOBILEYE_HTTP_RESPONSE', partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }
+        - { topicname: 'TRANS_IN',                             partitions: 1,      replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }
+        - { topicname: 'CAMPAIGN_JOB_STATISTICS',              partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=604800000'                               }
+        - { topicname: 'TEST-PUMP',                            partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=120000',             is_test_topic: true }
+        - { topicname: 'TARGET_TOPIC_12',                      partitions: 60,     replication_factor: 2, config: 'retention.bytes=2147483648, retention.ms=2628000000'                              }
+        - { topicname: 'TARGET_12_IPA_AWS_KINESIS_RESPONSE',   partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }
+        - { topicname: 'be4fas-emea-erd-cdc2',                 partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }
+        - { topicname: 'be4fas-emea-erd-here',                 partitions: 60,     replication_factor: 2, config: 'retention.bytes=-1,         retention.ms=2628000000'                              }

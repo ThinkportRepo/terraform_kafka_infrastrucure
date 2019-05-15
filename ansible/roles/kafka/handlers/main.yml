@@ -1,0 +1,9 @@
+- name: restart kafka
+  become: yes
+  systemd:
+    name: "{{kafka.broker.service_name}}"
+    state: restarted
+
+- name: reload systemd
+  become: yes
+  command: systemctl daemon-reload

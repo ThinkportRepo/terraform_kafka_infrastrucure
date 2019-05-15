@@ -1,7 +1,7 @@
 {
   "variables": {
-    "aws_access_key": "AKIAIPBHG4H3J4YBOROA",
-    "aws_secret_key": "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",
+    "aws_access_key": "access_key",
+    "aws_secret_key": "secret_key",
     "region": "eu-central-1",
     "ssh_username": "ec2-user",
     "base_ami": "ami-09def150731bdbcc2",
